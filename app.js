@@ -38,7 +38,7 @@ new Vue({
         },
         
         toggle(){
-            // alert(this.ascending)
+           
             if(this.ascending){
                 this.ascending=false;
             }
@@ -47,7 +47,7 @@ new Vue({
             }
         },
         sortAsc: function(arr) {
-            // Set slice() to avoid to generate an infinite loop!
+           
            // this.ascending=true;
             return arr.slice().sort(function(a, b) {
               return a.Value - b.Value;
