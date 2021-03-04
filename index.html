@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Player Details</title>
+
+    
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- <link href="style.css" rel="stylesheet" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+</head>
+
+<body>
+
+    <br>
+    <br>
+    <header>
+        <h1 style="text-align: center;">Player Details</h1>
+    </header>
+    <br>
+    <br>
+
+    <div id="app">
+
+        <div id="sort-bar">
+            
+             <button v-on:click="toggle" class="btn btn-secondary"  style="margin-left: 90px;"> 
+                 Sort Button
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+           
+            <input type="text" style=" width:200px;"  v-model="searchValue" @change="search" placeholder="Search by TName or PFName" id="search-input"></input> &nbsp;&nbsp;
+            <i class="fa fa-2x fa-search" style="vertical-align: bottom;"></i>
+          </div>
+        <br>
+        <br>
+        
+
+    <div class="container">
+  
+        <div class="row">
+        <div v-if="ascending">
+          <div class="col-md-4" v-for="id in sortAsc(data)" :key="id.Id">
+            <div class="thumbnail">
+                <img v-bind:src="'player-images/' + id.Id + '.jpg'" alt="NoImagePresent" style="width:100%">
+                <div class="caption">
+                  <p>Full Name : {{id.PFName}}</p>
+                  <p>Skill : {{id.SkillDesc}}</p>
+                  <p>Value : {{id.Value}} $</p>
+                  <p>Upcoming Match : {{validate(id.UpComingMatchesList[0].CCode,id.UpComingMatchesList[0].VsCCode)}}</p>
+                  <p>Match Time : {{formatDate(id.UpComingMatchesList[0].MDate)}}.</p>
+                </div>
+            </div>
+          </div>
+          </div>
+
+          <div v-if="!ascending">
+            <div class="col-md-4" v-for="id in sortDesc(data)" :key="id.Id">
+              <div class="thumbnail">
+                  <img v-bind:src="'player-images/' + id.Id + '.jpg'" alt="NoImagePresent" style="width:100%">
+                  <div class="caption">
+                    <p>Full Name : {{id.PFName}}</p>
+                    <p>Skill : {{id.SkillDesc}}</p>
+                    <p>Value : {{id.Value}} $</p>
+                    <p>Upcoming Match : {{validate(id.UpComingMatchesList[0].CCode,id.UpComingMatchesList[0].VsCCode)}}</p>
+                    <p>Match Time : {{formatDate(id.UpComingMatchesList[0].MDate)}}.</p>
+                  </div>
+              </div>
+            </div>
+            </div>
+       
+    </div>
+
+    </div>
+    </div>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
+
+<style lang="css"  scoped >
+  
+ 
+  body  {
+  background-image: url("player-images/bg2.jpg");
+  background-color: #cccccc;
+}
+     #sort-bar {
+        width: 85%;
+        
+        margin-left: 0px;
+        /* margin-right: 0px; */
+  
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+      }
+      
+.sort-button {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  font-size: 25px;
+  height: 100%;
+  color: rgb(17, 17, 19);
+  /* width: 00px; */
+  
+}
+
+
+
+</style>
